@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { href: "/care-logs", label: "Chăm sóc", icon: "🌱" },
   { href: "/expenses", label: "Chi phí", icon: "💰" },
   { href: "/reports", label: "Báo cáo", icon: "📊" },
+  { href: "/settings", label: "Cài đặt", icon: "⚙️" },
 ];
 
 export default async function DashboardLayout({
