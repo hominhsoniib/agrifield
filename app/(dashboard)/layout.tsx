@@ -1,19 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { signOut } from "@/lib/actions/auth";
 import { ChangePasswordDialog } from "@/components/forms/ChangePasswordDialog";
-
-const NAV_ITEMS = [
-  { href: "/dashboard", label: "Tổng quan", icon: "🏠" },
-  { href: "/farms", label: "Nông trại", icon: "🌾" },
-  { href: "/growing-areas", label: "Vùng trồng", icon: "🗺️" },
-  { href: "/fertilizer-logs", label: "Bón phân", icon: "🧪" },
-  { href: "/care-logs", label: "Chăm sóc", icon: "🌱" },
-  { href: "/harvest-logs", label: "Thu hoạch", icon: "🧺" },
-  { href: "/inventory", label: "Vật tư", icon: "📦" },
-  { href: "/expenses", label: "Chi phí", icon: "💰" },
-  { href: "/reports", label: "Báo cáo", icon: "📊" },
-  { href: "/users", label: "Người dùng", icon: "👥" },
-];
+import { SidebarNav, MobileNav } from "@/components/layout/SidebarNav";
 
 export default async function DashboardLayout({
   children,
@@ -26,41 +14,33 @@ export default async function DashboardLayout({
   } = await supabase.auth.getUser();
 
   return (
-    <div className="flex min-h-screen w-full">
+    <div className="flex min-h-screen w-full bg-neutral-50 dark:bg-neutral-950">
       {/* Sidebar — desktop */}
-      <aside className="hidden w-60 shrink-0 border-r border-neutral-200 bg-white md:flex md:flex-col">
-        <div className="flex h-14 items-center gap-2 border-b border-neutral-200 px-4">
-          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-700 text-xs font-semibold text-white">
+      <aside className="hidden w-60 shrink-0 border-r border-neutral-200 bg-white md:flex md:flex-col dark:border-neutral-800 dark:bg-neutral-900">
+        <div className="flex h-14 items-center gap-2 border-b border-neutral-200 px-4 dark:border-neutral-800">
+          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-700 text-xs font-bold text-white shadow-xs">
             F
           </div>
-          <span className="text-sm font-semibold text-neutral-900">
+          <span className="text-sm font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
             FarmTrack
           </span>
         </div>
 
-        <nav className="flex-1 space-y-0.5 p-2 overflow-y-auto">
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="flex items-center gap-2.5 rounded-md px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100"
-            >
-              <span aria-hidden>{item.icon}</span>
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        <SidebarNav />
 
         {/* User profile & actions */}
-        <div className="border-t border-neutral-200 p-3 space-y-1">
-          <p className="truncate px-3 py-1 text-xs font-medium text-neutral-500" title={user?.email}>
+        <div className="border-t border-neutral-200 p-3 space-y-1 dark:border-neutral-800">
+          <p
+            className="truncate px-3 py-1 text-xs font-medium text-neutral-500 dark:text-neutral-400"
+            title={user?.email}
+          >
             {user?.email}
           </p>
           <ChangePasswordDialog />
           <form action={signOut}>
             <button
               type="submit"
-              className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-left text-sm text-neutral-600 hover:bg-neutral-100 transition-colors"
+              className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-left text-sm text-neutral-600 hover:bg-neutral-100 transition-colors dark:text-neutral-300 dark:hover:bg-neutral-800/60"
             >
               <span aria-hidden>🚪</span>
               <span>Đăng xuất</span>
@@ -71,17 +51,14 @@ export default async function DashboardLayout({
 
       <div className="flex min-h-screen flex-1 flex-col">
         {/* Top bar — mobile */}
-        <header className="flex h-14 items-center justify-between border-b border-neutral-200 bg-white px-4 md:hidden">
-          <span className="text-sm font-semibold text-neutral-900">
+        <header className="flex h-14 items-center justify-between border-b border-neutral-200 bg-white px-4 md:hidden dark:border-neutral-800 dark:bg-neutral-900">
+          <span className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
             FarmTrack
           </span>
           <div className="flex items-center gap-2">
             <ChangePasswordDialog />
             <form action={signOut}>
-              <button
-                type="submit"
-                className="text-sm text-neutral-500"
-              >
+              <button type="submit" className="text-sm text-neutral-500 dark:text-neutral-400">
                 Đăng xuất
               </button>
             </form>
@@ -93,20 +70,7 @@ export default async function DashboardLayout({
         </main>
 
         {/* Bottom nav — mobile */}
-        <nav className="fixed inset-x-0 bottom-0 z-10 flex border-t border-neutral-200 bg-white md:hidden">
-          {NAV_ITEMS.slice(0, 6).map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="flex flex-1 flex-col items-center gap-0.5 py-2 text-[10px] text-neutral-600"
-            >
-              <span aria-hidden className="text-base leading-none">
-                {item.icon}
-              </span>
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        <MobileNav />
       </div>
     </div>
   );

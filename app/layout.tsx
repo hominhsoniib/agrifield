@@ -18,7 +18,11 @@ export const metadata: Metadata = {
   description: "Nhật ký canh tác, bón phân, chi phí theo vùng trồng",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="vi"
