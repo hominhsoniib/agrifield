@@ -36,6 +36,17 @@ export default function AboutPage() {
             Kết nối dữ liệu · Quản lý toàn diện · Nâng cao hiệu quả · Hướng đến nông nghiệp bền vững.
             Giải pháp số hóa nhật ký canh tác, vật tư và chi phí nông nghiệp dành cho nông hộ và doanh nghiệp.
           </p>
+
+          <div className="pt-2">
+            <Link
+              href="/sam-bo-chinh"
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 px-4 py-2.5 text-xs font-bold text-white shadow-md hover:from-emerald-400 hover:to-teal-400 transition-all hover:scale-[1.02]"
+            >
+              <Sprout className="size-4" />
+              <span>Xem Kỹ thuật Trồng Sâm Bố Chính</span>
+              <ArrowRight className="size-3.5" />
+            </Link>
+          </div>
         </div>
 
         {/* Decorative blur */}

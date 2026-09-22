@@ -26,6 +26,7 @@ const NAV_ITEMS: NavItem[] = [
     children: [
       { href: "/dashboard", label: "Bảng điều khiển", icon: "📊" },
       { href: "/about", label: "Giới thiệu hệ thống", icon: "📖" },
+      { href: "/sam-bo-chinh", label: "Kỹ thuật trồng Sâm Bố Chính", icon: "🌱" },
     ],
   },
   { href: "/farms", label: "Nông trại", icon: "🌾" },
