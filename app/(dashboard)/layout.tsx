@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   { href: "/growing-areas", label: "Vùng trồng", icon: "🗺️" },
   { href: "/fertilizer-logs", label: "Bón phân", icon: "🧪" },
   { href: "/care-logs", label: "Chăm sóc", icon: "🌱" },
+  { href: "/harvest-logs", label: "Thu hoạch", icon: "🧺" },
   { href: "/inventory", label: "Vật tư", icon: "📦" },
   { href: "/expenses", label: "Chi phí", icon: "💰" },
   { href: "/reports", label: "Báo cáo", icon: "📊" },
@@ -37,7 +38,7 @@ export default async function DashboardLayout({
           </span>
         </div>
 
-        <nav className="flex-1 space-y-0.5 p-2">
+        <nav className="flex-1 space-y-0.5 p-2 overflow-y-auto">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.href}
@@ -93,7 +94,7 @@ export default async function DashboardLayout({
 
         {/* Bottom nav — mobile */}
         <nav className="fixed inset-x-0 bottom-0 z-10 flex border-t border-neutral-200 bg-white md:hidden">
-          {NAV_ITEMS.slice(0, 5).map((item) => (
+          {NAV_ITEMS.slice(0, 6).map((item) => (
             <a
               key={item.href}
               href={item.href}
