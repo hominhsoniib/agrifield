@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { signOut } from "@/lib/actions/auth";
+import { ChangePasswordDialog } from "@/components/forms/ChangePasswordDialog";
 
 const NAV_ITEMS = [
   { href: "/dashboard", label: "Tổng quan", icon: "🏠" },
@@ -9,7 +10,6 @@ const NAV_ITEMS = [
   { href: "/care-logs", label: "Chăm sóc", icon: "🌱" },
   { href: "/expenses", label: "Chi phí", icon: "💰" },
   { href: "/reports", label: "Báo cáo", icon: "📊" },
-  { href: "/settings", label: "Cài đặt", icon: "⚙️" },
 ];
 
 export default async function DashboardLayout({
@@ -48,16 +48,19 @@ export default async function DashboardLayout({
           ))}
         </nav>
 
-        <div className="border-t border-neutral-200 p-3">
-          <p className="truncate px-1 text-xs text-neutral-500">
+        {/* User profile & actions */}
+        <div className="border-t border-neutral-200 p-3 space-y-1">
+          <p className="truncate px-3 py-1 text-xs font-medium text-neutral-500" title={user?.email}>
             {user?.email}
           </p>
+          <ChangePasswordDialog />
           <form action={signOut}>
             <button
               type="submit"
-              className="mt-1 w-full rounded-md px-3 py-1.5 text-left text-sm text-neutral-600 hover:bg-neutral-100"
+              className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-left text-sm text-neutral-600 hover:bg-neutral-100 transition-colors"
             >
-              Đăng xuất
+              <span aria-hidden>🚪</span>
+              <span>Đăng xuất</span>
             </button>
           </form>
         </div>
@@ -69,14 +72,17 @@ export default async function DashboardLayout({
           <span className="text-sm font-semibold text-neutral-900">
             FarmTrack
           </span>
-          <form action={signOut}>
-            <button
-              type="submit"
-              className="text-sm text-neutral-500"
-            >
-              Đăng xuất
-            </button>
-          </form>
+          <div className="flex items-center gap-2">
+            <ChangePasswordDialog />
+            <form action={signOut}>
+              <button
+                type="submit"
+                className="text-sm text-neutral-500"
+              >
+                Đăng xuất
+              </button>
+            </form>
+          </div>
         </header>
 
         <main className="flex-1 overflow-y-auto pb-16 md:pb-0">
