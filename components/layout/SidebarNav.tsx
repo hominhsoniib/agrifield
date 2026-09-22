@@ -27,6 +27,7 @@ const NAV_ITEMS: NavItem[] = [
       { href: "/dashboard", label: "Bảng điều khiển", icon: "📊" },
       { href: "/about", label: "Giới thiệu hệ thống", icon: "📖" },
       { href: "/sam-bo-chinh", label: "Kỹ thuật trồng Sâm Bố Chính", icon: "🌱" },
+      { href: "/sam-an-do", label: "Kỹ thuật trồng Sâm Ấn Độ", icon: "🌿" },
     ],
   },
   { href: "/farms", label: "Nông trại", icon: "🌾" },
