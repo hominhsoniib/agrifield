@@ -57,7 +57,7 @@ export function SamBoChinhGuide() {
           }`}
         >
           <Sprout className="size-4 shrink-0" />
-          <span>Tab 1: Quy trình trồng</span>
+          <span>Quy trình trồng</span>
         </button>
 
         {/* Tab 2: Kỹ thuật làm đất (Amber/Earth Orange Theme) */}
@@ -71,7 +71,7 @@ export function SamBoChinhGuide() {
           }`}
         >
           <Shovel className="size-4 shrink-0" />
-          <span>Tab 2: Kỹ thuật làm đất</span>
+          <span>Kỹ thuật làm đất</span>
         </button>
 
         {/* Tab 3: Kỹ thuật ủ phân (Purple/Indigo Theme) */}
@@ -85,7 +85,7 @@ export function SamBoChinhGuide() {
           }`}
         >
           <FlaskConical className="size-4 shrink-0" />
-          <span>Tab 3: Kỹ thuật ủ phân</span>
+          <span>Kỹ thuật ủ phân</span>
         </button>
       </div>
 
