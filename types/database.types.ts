@@ -489,6 +489,89 @@ export type Database = {
           },
         ]
       }
+      harvest_logs: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          crop_name: string
+          deleted_at: string | null
+          estimated_value: number | null
+          farm_id: string | null
+          growing_area_id: string | null
+          harvest_date: string
+          id: string
+          notes: string | null
+          performed_by: string | null
+          quality_grade: string | null
+          quantity: number
+          unit: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          crop_name: string
+          deleted_at?: string | null
+          estimated_value?: number | null
+          farm_id?: string | null
+          growing_area_id?: string | null
+          harvest_date?: string
+          id?: string
+          notes?: string | null
+          performed_by?: string | null
+          quality_grade?: string | null
+          quantity: number
+          unit?: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          crop_name?: string
+          deleted_at?: string | null
+          estimated_value?: number | null
+          farm_id?: string | null
+          growing_area_id?: string | null
+          harvest_date?: string
+          id?: string
+          notes?: string | null
+          performed_by?: string | null
+          quality_grade?: string | null
+          quantity?: number
+          unit?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "harvest_logs_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "harvest_logs_farm_id_fkey"
+            columns: ["farm_id"]
+            isOneToOne: false
+            referencedRelation: "farms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "harvest_logs_growing_area_id_fkey"
+            columns: ["growing_area_id"]
+            isOneToOne: false
+            referencedRelation: "growing_areas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "harvest_logs_performed_by_fkey"
+            columns: ["performed_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       inventory_items: {
         Row: {
           category: string | null

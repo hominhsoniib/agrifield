@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select } from "@/components/ui/select";
 import type { Tables } from "@/types/database.types";
 
 type HarvestLog = Tables<"harvest_logs">;
@@ -93,6 +92,9 @@ export function HarvestLogForm({
     }
   }
 
+  const selectClassName =
+    "flex h-9 w-full rounded-md border border-neutral-300 bg-white px-3 py-1 text-sm shadow-sm transition-colors outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600";
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       {error && (
@@ -104,8 +106,9 @@ export function HarvestLogForm({
       {/* Farm select */}
       <div>
         <Label htmlFor="farm_id">Nông trại *</Label>
-        <Select
+        <select
           id="farm_id"
+          className={selectClassName}
           value={selectedFarmId}
           onChange={(e) => {
             const fId = e.target.value;
@@ -119,7 +122,7 @@ export function HarvestLogForm({
               {f.name}
             </option>
           ))}
-        </Select>
+        </select>
         {errors.farm_id && (
           <p className="mt-1 text-xs text-destructive">{errors.farm_id.message}</p>
         )}
@@ -128,14 +131,18 @@ export function HarvestLogForm({
       {/* Growing Area select */}
       <div>
         <Label htmlFor="growing_area_id">Vùng trồng *</Label>
-        <Select id="growing_area_id" {...register("growing_area_id")}>
+        <select
+          id="growing_area_id"
+          className={selectClassName}
+          {...register("growing_area_id")}
+        >
           <option value="">-- Chọn vùng trồng --</option>
           {filteredAreas.map((a) => (
             <option key={a.id} value={a.id}>
               {a.code}
             </option>
           ))}
-        </Select>
+        </select>
         {errors.growing_area_id && (
           <p className="mt-1 text-xs text-destructive">
             {errors.growing_area_id.message}
@@ -189,7 +196,7 @@ export function HarvestLogForm({
 
         <div>
           <Label htmlFor="unit">Đơn vị tính *</Label>
-          <Select id="unit" {...register("unit")}>
+          <select id="unit" className={selectClassName} {...register("unit")}>
             <option value="kg">kg</option>
             <option value="tấn">tấn</option>
             <option value="tạ">tạ</option>
@@ -197,7 +204,7 @@ export function HarvestLogForm({
             <option value="bao">bao</option>
             <option value="trái">trái / quả</option>
             <option value="thùng">thùng</option>
-          </Select>
+          </select>
           {errors.unit && (
             <p className="mt-1 text-xs text-destructive">{errors.unit.message}</p>
           )}
@@ -208,13 +215,17 @@ export function HarvestLogForm({
       <div className="grid grid-cols-2 gap-3">
         <div>
           <Label htmlFor="quality_grade">Chất lượng / Phân loại</Label>
-          <Select id="quality_grade" {...register("quality_grade")}>
+          <select
+            id="quality_grade"
+            className={selectClassName}
+            {...register("quality_grade")}
+          >
             {QUALITY_GRADES.map((g) => (
               <option key={g} value={g}>
                 {g}
               </option>
             ))}
-          </Select>
+          </select>
         </div>
 
         <div>
