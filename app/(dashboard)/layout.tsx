@@ -8,8 +8,10 @@ const NAV_ITEMS = [
   { href: "/growing-areas", label: "Vùng trồng", icon: "🗺️" },
   { href: "/fertilizer-logs", label: "Bón phân", icon: "🧪" },
   { href: "/care-logs", label: "Chăm sóc", icon: "🌱" },
+  { href: "/inventory", label: "Vật tư", icon: "📦" },
   { href: "/expenses", label: "Chi phí", icon: "💰" },
   { href: "/reports", label: "Báo cáo", icon: "📊" },
+  { href: "/users", label: "Người dùng", icon: "👥" },
 ];
 
 export default async function DashboardLayout({
