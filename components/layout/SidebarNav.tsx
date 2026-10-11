@@ -39,6 +39,7 @@ const NAV_ITEMS: NavItem[] = [
   { href: "/expenses", label: "Chi phí", icon: "💰" },
   { href: "/reports", label: "Báo cáo", icon: "📊" },
   { href: "/users", label: "Người dùng", icon: "👥" },
+  { href: "/admin/content", label: "Quản lý nội dung", icon: "📝" },
 ];
 
 export function SidebarNav() {

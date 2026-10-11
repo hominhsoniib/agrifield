@@ -1,25 +1,24 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
-  Info,
   Database,
   Cloud,
   FileSpreadsheet,
   Users,
-  Award,
   Sparkles,
   ArrowRight,
   ExternalLink,
-  ShieldCheck,
   Cpu,
-  TrendingUp,
-  Layers,
   Sprout,
-  BarChart3,
   BookOpen,
 } from "lucide-react";
+import { getSiteContent } from "@/lib/actions/content";
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const dynamicContent = await getSiteContent("about-page");
+
+  const displayTitle = dynamicContent?.title || "Sơ đồ Minh họa & Giới thiệu Hệ thống AgriField";
+  const displaySummary = dynamicContent?.summary || "Kết nối dữ liệu · Quản lý toàn diện · Nâng cao hiệu quả · Hướng đến nông nghiệp bền vững. Giải pháp số hóa nhật ký canh tác, vật tư và chi phí nông nghiệp dành cho nông hộ và doanh nghiệp.";
+
   return (
     <div className="space-y-8 p-4 md:p-6 max-w-7xl mx-auto">
       {/* Header Banner */}
@@ -30,11 +29,10 @@ export default function AboutPage() {
             <span>Nông nghiệp số — Giá trị thật</span>
           </div>
           <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white leading-tight">
-            Sơ đồ Minh họa & Giới thiệu Hệ thống AgriField
+            {displayTitle}
           </h1>
           <p className="text-sm md:text-base text-emerald-100/90 leading-relaxed">
-            Kết nối dữ liệu · Quản lý toàn diện · Nâng cao hiệu quả · Hướng đến nông nghiệp bền vững.
-            Giải pháp số hóa nhật ký canh tác, vật tư và chi phí nông nghiệp dành cho nông hộ và doanh nghiệp.
+            {displaySummary}
           </p>
 
           <div className="pt-2">
@@ -52,6 +50,19 @@ export default function AboutPage() {
         {/* Decorative blur */}
         <div className="absolute -right-12 -bottom-12 size-64 rounded-full bg-emerald-500/15 blur-3xl pointer-events-none" />
       </div>
+
+      {/* Dynamic Admin Notice if available */}
+      {dynamicContent?.content && (
+        <div className="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-5 dark:border-emerald-900/50 dark:bg-emerald-950/30 space-y-2 shadow-xs">
+          <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 dark:text-emerald-300">
+            <Sparkles className="size-4 text-emerald-600" />
+            <span>Thông báo & Cập nhật từ Ban quản trị:</span>
+          </div>
+          <div className="whitespace-pre-wrap text-sm text-neutral-800 dark:text-neutral-200 leading-relaxed">
+            {dynamicContent.content}
+          </div>
+        </div>
+      )}
 
       {/* Main Infographic Image Card */}
       <div className="rounded-2xl border border-neutral-200/80 bg-white p-4 md:p-6 shadow-md dark:border-neutral-800 dark:bg-neutral-900 space-y-4">

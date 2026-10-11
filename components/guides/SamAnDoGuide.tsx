@@ -10,14 +10,10 @@ import {
   Thermometer,
   Droplets,
   Sparkles,
-  Sun,
   Ruler,
-  CheckCircle2,
   BookOpen,
-  Waves,
   Pipette,
   Scissors,
-  AlertTriangle,
   Flame,
   ShieldAlert,
   Clock,
@@ -32,8 +28,19 @@ type TabKey =
   | "tuoi-nho-giot"
   | "thu-hoach";
 
-export function SamAnDoGuide() {
+type SamGuideProps = {
+  dynamicContent?: {
+    title?: string;
+    summary?: string | null;
+    content?: string | null;
+  } | null;
+};
+
+export function SamAnDoGuide({ dynamicContent }: SamGuideProps) {
   const [activeTab, setActiveTab] = useState<TabKey>("tong-quat");
+
+  const displayTitle = dynamicContent?.title || "Quy Trình Canh Tác Sâm Ấn Độ (Ashwagandha)";
+  const displaySummary = dynamicContent?.summary || "Quy trình canh tác dược liệu số hóa từ ngâm ủ giống, xử lý đất kiềm nhẹ pH 7.5-8.0, ủ phân vi sinh EM2, hệ thống nhỏ giọt A/B đến kỹ thuật tỉa cành không mất nhựa & thu hoạch củ.";
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto p-4 md:p-6">
@@ -45,15 +52,28 @@ export function SamAnDoGuide() {
             <span>Quy trình Kỹ thuật Chuẩn Nông trại AgriField (Từ A - Z)</span>
           </div>
           <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white leading-tight">
-            Quy Trình Canh Tác Sâm Ấn Độ (Ashwagandha)
+            {displayTitle}
           </h1>
           <p className="text-sm text-teal-100/90 leading-relaxed">
-            Quy trình canh tác dược liệu số hóa từ ngâm ủ giống, xử lý đất kiềm nhẹ pH 7.5-8.0, ủ phân vi sinh EM2, hệ thống nhỏ giọt A/B đến kỹ thuật tỉa cành không mất nhựa & thu hoạch củ.
+            {displaySummary}
           </p>
         </div>
 
         <div className="absolute -right-10 -bottom-10 size-60 rounded-full bg-teal-500/15 blur-3xl pointer-events-none" />
       </div>
+
+      {/* Dynamic Admin Notice/Content if exists */}
+      {dynamicContent?.content && (
+        <div className="rounded-2xl border border-teal-200 bg-teal-50/80 p-5 dark:border-teal-900/50 dark:bg-teal-950/30 space-y-2 shadow-xs">
+          <div className="flex items-center gap-2 text-xs font-bold text-teal-800 dark:text-teal-300">
+            <Sparkles className="size-4 text-teal-600" />
+            <span>Nội dung cập nhật mới từ Ban quản trị:</span>
+          </div>
+          <div className="whitespace-pre-wrap text-sm text-neutral-800 dark:text-neutral-200 leading-relaxed">
+            {dynamicContent.content}
+          </div>
+        </div>
+      )}
 
       {/* 7 Multi-Tab Navigation Bar - Multi-Color Theme */}
       <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 p-1.5 rounded-2xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
@@ -255,7 +275,7 @@ export function SamAnDoGuide() {
                 Quy Trình Ươm Giống Sâm Ấn Độ
               </h2>
               <p className="text-xs text-emerald-700 dark:text-emerald-300">
-                Kỹ thuật ngâm ủ nứt nanh, vô trùng giá thể & quy trình tưới "ăn dặm" A/B cho cây con
+                Kỹ thuật ngâm ủ nứt nanh, vô trùng giá thể & quy trình tưới &quot;ăn dặm&quot; A/B cho cây con
               </p>
             </div>
           </div>
@@ -296,10 +316,10 @@ export function SamAnDoGuide() {
           <div className="rounded-xl border border-neutral-200/80 bg-white p-5 shadow-xs dark:border-neutral-800 dark:bg-neutral-900 space-y-3">
             <h3 className="text-sm font-bold text-emerald-900 dark:text-emerald-200 flex items-center gap-2">
               <Pipette className="size-4 text-emerald-600" />
-              <span>Kỹ Thuật Tưới "Ăn Dặm" A/B Luân Phiên Cho Cây Con Sâm Ấn Độ</span>
+              <span>Kỹ Thuật Tưới &quot;Ăn Dặm&quot; A/B Luân Phiên Cho Cây Con Sâm Ấn Độ</span>
             </h3>
             <p className="text-xs text-neutral-600 dark:text-neutral-400">
-              Chỉ tưới phân khi cây con xuất hiện <strong>2 lá thật</strong>. Pha dung dịch "Nước Mẹ" tỉ lệ 1:100 (100ml nước mẹ pha 10L nước sạch):
+              Chỉ tưới phân khi cây con xuất hiện <strong>2 lá thật</strong>. Pha dung dịch &quot;Nước Mẹ&quot; tỉ lệ 1:100 (100ml nước mẹ pha 10L nước sạch):
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
               <div className="p-3 rounded-lg bg-emerald-50 border border-emerald-100 dark:bg-emerald-950/40 dark:border-emerald-900/50">

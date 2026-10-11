@@ -43,4 +43,6 @@ next-env.d.ts
 # temp test files
 .tmp_*
 env.download
+scratch/
+TRỒNG SÂM/
 

@@ -29,8 +29,13 @@ export function canManageInventory(role: UserRole | null | undefined): boolean {
   return isFullAccessRole(role);
 }
 
+export function canManageContent(role: UserRole | null | undefined): boolean {
+  return isFullAccessRole(role);
+}
+
 /**
  * Ghi chú: đây chỉ là lớp UX (ẩn/hiện nút, điều hướng).
  * Nguồn phân quyền thật sự luôn là RLS trên Supabase (xem supabase/migrations/0001_init_schema.sql).
  * Không được tin tưởng tuyệt đối vào check phía client này cho bất kỳ hành vi ghi dữ liệu nào.
  */
+

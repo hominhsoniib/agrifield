@@ -10,9 +10,7 @@ import {
   Thermometer,
   Droplets,
   Sparkles,
-  Sun,
   Ruler,
-  CheckCircle2,
   BookOpen,
   Waves,
   Pipette,
@@ -20,10 +18,7 @@ import {
   AlertTriangle,
   Flame,
   ShieldAlert,
-  TestTube,
   Clock,
-  ChevronRight,
-  TrendingUp,
 } from "lucide-react";
 
 type TabKey =
@@ -35,8 +30,19 @@ type TabKey =
   | "tuoi-nho-giot"
   | "thu-hoach";
 
-export function SamBoChinhGuide() {
+type SamGuideProps = {
+  dynamicContent?: {
+    title?: string;
+    summary?: string | null;
+    content?: string | null;
+  } | null;
+};
+
+export function SamBoChinhGuide({ dynamicContent }: SamGuideProps) {
   const [activeTab, setActiveTab] = useState<TabKey>("tong-quat");
+
+  const displayTitle = dynamicContent?.title || "Quy Trình Canh Tác Sâm Bố Chính Chuẩn Kỹ Thuật";
+  const displaySummary = dynamicContent?.summary || "Bộ tài liệu quy trình chuẩn hóa từ khâu xử lý hạt giống, xử lý đất phèn/xám Củ Chi, ủ phân 2 giai đoạn, lắp đặt tưới nhỏ giọt A/B đến thu hoạch & sơ chế đạt chuẩn hàm lượng Saponin.";
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto p-4 md:p-6">
@@ -48,15 +54,28 @@ export function SamBoChinhGuide() {
             <span>Quy trình Kỹ thuật Chuẩn Nông trại AgriField (Từ A - Z)</span>
           </div>
           <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white leading-tight">
-            Quy Trình Canh Tác Sâm Bố Chính Chuẩn Kỹ Thuật
+            {displayTitle}
           </h1>
           <p className="text-sm text-emerald-100/90 leading-relaxed">
-            Bộ tài liệu quy trình chuẩn hóa từ khâu xử lý hạt giống, xử lý đất phèn/xám Củ Chi, ủ phân 2 giai đoạn, lắp đặt tưới nhỏ giọt A/B đến thu hoạch & sơ chế đạt chuẩn hàm lượng Saponin.
+            {displaySummary}
           </p>
         </div>
 
         <div className="absolute -right-10 -bottom-10 size-60 rounded-full bg-emerald-500/15 blur-3xl pointer-events-none" />
       </div>
+
+      {/* Dynamic Admin Notice/Content if exists */}
+      {dynamicContent?.content && (
+        <div className="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-5 dark:border-emerald-900/50 dark:bg-emerald-950/30 space-y-2 shadow-xs">
+          <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 dark:text-emerald-300">
+            <Sparkles className="size-4 text-emerald-600" />
+            <span>Nội dung cập nhật mới từ Ban quản trị:</span>
+          </div>
+          <div className="whitespace-pre-wrap text-sm text-neutral-800 dark:text-neutral-200 leading-relaxed">
+            {dynamicContent.content}
+          </div>
+        </div>
+      )}
 
       {/* 7 Multi-Tab Navigation Bar - Multi-Color Theme */}
       <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 p-1.5 rounded-2xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
@@ -258,7 +277,7 @@ export function SamBoChinhGuide() {
                 Quy Trình Ươm Giống Sâm Bố Chính Kỹ Thuật Cao
               </h2>
               <p className="text-xs text-green-700 dark:text-green-300">
-                Kích thích nảy mầm đồng loạt, vô trùng giá thể & quy trình tưới "ăn dặm" A/B cho cây con
+                Kích thích nảy mầm đồng loạt, vô trùng giá thể & quy trình tưới &quot;ăn dặm&quot; A/B cho cây con
               </p>
             </div>
           </div>
@@ -267,7 +286,7 @@ export function SamBoChinhGuide() {
             <div className="rounded-xl border border-green-200 bg-white p-4 shadow-xs dark:border-neutral-800 dark:bg-neutral-900 space-y-2">
               <h4 className="font-bold text-green-800 dark:text-green-300 flex items-center gap-1.5">
                 <Thermometer className="size-4 text-green-600" />
-                1. Ngâm Hạt "2 Sôi 3 Lạnh"
+                1. Ngâm Hạt &quot;2 Sôi 3 Lạnh&quot;
               </h4>
               <p className="text-neutral-600 dark:text-neutral-400">
                 Pha 2 phần nước sôi + 3 phần nước lạnh (50-54°C). Pha thêm Nano Bạc hoặc nấm <em>Chaetomium</em> ngâm trong <strong>6 - 8 giờ</strong> diệt nấm thán thư bám vỏ.
@@ -280,7 +299,7 @@ export function SamBoChinhGuide() {
                 2. Ủ Nứt Nanh (24 - 48h)
               </h4>
               <p className="text-neutral-600 dark:text-neutral-400">
-                Rửa sạch nhớt, cuộn trong khăn ẩm 70-80%, để túi zip tối ấm (28-32°C). Khi 90% hạt nhú mầm 1-2mm ("nứt nanh") là đem gieo ngay.
+                Rửa sạch nhớt, cuộn trong khăn ẩm 70-80%, để túi zip tối ấm (28-32°C). Khi 90% hạt nhú mầm 1-2mm (&quot;nứt nanh&quot;) là đem gieo ngay.
               </p>
             </div>
 
@@ -309,10 +328,10 @@ export function SamBoChinhGuide() {
           <div className="rounded-xl border border-neutral-200/80 bg-white p-5 shadow-xs dark:border-neutral-800 dark:bg-neutral-900 space-y-3">
             <h3 className="text-sm font-bold text-green-900 dark:text-green-200 flex items-center gap-2">
               <Pipette className="size-4 text-green-600" />
-              <span>Kỹ Thuật Tưới "Ăn Dặm" A/B Luân Phiên Cho Cây Con (Khay 50-70 Lỗ)</span>
+              <span>Kỹ Thuật Tưới &quot;Ăn Dặm&quot; A/B Luân Phiên Cho Cây Con (Khay 50-70 Lỗ)</span>
             </h3>
             <p className="text-xs text-neutral-600 dark:text-neutral-400">
-              Chỉ tưới phân khi cây xuất hiện <strong>2 lá thật</strong>. Pha dung dịch "Nước Mẹ" tỉ lệ 1:100 (100ml nước mẹ pha 10L nước sạch):
+              Chỉ tưới phân khi cây xuất hiện <strong>2 lá thật</strong>. Pha dung dịch &quot;Nước Mẹ&quot; tỉ lệ 1:100 (100ml nước mẹ pha 10L nước sạch):
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
               <div className="p-3 rounded-lg bg-green-50 border border-green-100 dark:bg-green-950/40 dark:border-green-900/50">
@@ -479,7 +498,7 @@ export function SamBoChinhGuide() {
             <div className="rounded-xl border border-orange-200 bg-white p-4 shadow-xs dark:border-neutral-800 dark:bg-neutral-900 space-y-2">
               <h4 className="font-bold text-orange-800 dark:text-orange-300 flex items-center gap-1.5">
                 <Ruler className="size-4 text-orange-600" />
-                1. Luống Hình "Mui Rùa"
+                1. Luống Hình &quot;Mui Rùa&quot;
               </h4>
               <p className="text-neutral-600 dark:text-neutral-400">
                 Mặt luống vồng cao ở giữa dốc về 2 bên. Chiều cao luống <strong>40 - 50cm</strong> so với đáy rãnh. Rãnh rộng 40-50cm giúp thoát nước cực nhanh khi mưa lớn.
